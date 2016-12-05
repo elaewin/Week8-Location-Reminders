@@ -13,10 +13,10 @@
 		55293F111DF5E8A000A8FCD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55293F0F1DF5E8A000A8FCD6 /* Main.storyboard */; };
 		55293F131DF5E8A000A8FCD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55293F121DF5E8A000A8FCD6 /* Assets.xcassets */; };
 		55293F161DF5E8A000A8FCD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55293F141DF5E8A000A8FCD6 /* LaunchScreen.storyboard */; };
-		554E42381DF612220053FB5F /* Parse.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 554E42371DF612220053FB5F /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		554E423A1DF6122F0053FB5F /* Bolts.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 554E42391DF6122F0053FB5F /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		554E423B1DF612990053FB5F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E42391DF6122F0053FB5F /* Bolts.framework */; };
-		554E423C1DF612A70053FB5F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E42371DF612220053FB5F /* Parse.framework */; };
+		55524A7D1DF6169C0088B308 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55524A7C1DF6169C0088B308 /* Bolts.framework */; };
+		55524A7F1DF616A50088B308 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55524A7E1DF616A50088B308 /* Parse.framework */; };
+		55524A801DF616D00088B308 /* Parse.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 55524A7E1DF616A50088B308 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55524A811DF616D50088B308 /* Bolts.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 55524A7C1DF6169C0088B308 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,10 +24,10 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 10;
 			files = (
-				554E423A1DF6122F0053FB5F /* Bolts.framework in Copy Files (2 items) */,
-				554E42381DF612220053FB5F /* Parse.framework in Copy Files (2 items) */,
+				55524A811DF616D50088B308 /* Bolts.framework in Copy Files (2 items) */,
+				55524A801DF616D00088B308 /* Parse.framework in Copy Files (2 items) */,
 			);
 			name = "Copy Files (2 items)";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,8 +45,9 @@
 		55293F121DF5E8A000A8FCD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55293F151DF5E8A000A8FCD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55293F171DF5E8A000A8FCD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		554E42371DF612220053FB5F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
-		554E42391DF6122F0053FB5F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
+		55524A7C1DF6169C0088B308 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
+		55524A7E1DF616A50088B308 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
+		55524A821DF6174D0088B308 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554E423C1DF612A70053FB5F /* Parse.framework in Frameworks */,
-				554E423B1DF612990053FB5F /* Bolts.framework in Frameworks */,
+				55524A7F1DF616A50088B308 /* Parse.framework in Frameworks */,
+				55524A7D1DF6169C0088B308 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +66,9 @@
 		55293EFA1DF5E8A000A8FCD6 = {
 			isa = PBXGroup;
 			children = (
-				554E42391DF6122F0053FB5F /* Bolts.framework */,
-				554E42371DF612220053FB5F /* Parse.framework */,
 				55293F051DF5E8A000A8FCD6 /* location-reminders */,
 				55293F041DF5E8A000A8FCD6 /* Products */,
+				55524A7B1DF6169C0088B308 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +97,7 @@
 				55293F091DF5E8A000A8FCD6 /* AppDelegate.h */,
 				55293F0A1DF5E8A000A8FCD6 /* AppDelegate.m */,
 				55293F121DF5E8A000A8FCD6 /* Assets.xcassets */,
+				55524A821DF6174D0088B308 /* Constants.h */,
 				55293F171DF5E8A000A8FCD6 /* Info.plist */,
 				55293F071DF5E8A000A8FCD6 /* main.m */,
 			);
@@ -126,6 +127,15 @@
 			children = (
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		55524A7B1DF6169C0088B308 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55524A7E1DF616A50088B308 /* Parse.framework */,
+				55524A7C1DF6169C0088B308 /* Bolts.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

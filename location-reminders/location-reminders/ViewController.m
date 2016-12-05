@@ -76,9 +76,9 @@
 -(IBAction)setLocationPressed:(id)sender {
     
     // CLLocationCoordinate2D = struct, so no * for pointer needed on coordinate variable.
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-23.4423, -151.9148);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-23.4423, 151.9148);
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 700, 700);
     
     [self.mapView setRegion:region animated:YES];
     
