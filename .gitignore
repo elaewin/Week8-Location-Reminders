@@ -1,6 +1,6 @@
 # file for API keys, etc.
 
-constants.*
+Constants.*
 
 # Created by https://www.gitignore.io/api/osx,swift,objective-c
 
