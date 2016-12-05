@@ -15,6 +15,18 @@
 		55293F161DF5E8A000A8FCD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55293F141DF5E8A000A8FCD6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		554E42361DF611B70053FB5F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		55293F031DF5E8A000A8FCD6 /* location-reminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "location-reminders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55293F071DF5E8A000A8FCD6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,14 +70,9 @@
 		55293F051DF5E8A000A8FCD6 /* location-reminders */ = {
 			isa = PBXGroup;
 			children = (
-				55293F091DF5E8A000A8FCD6 /* AppDelegate.h */,
-				55293F0A1DF5E8A000A8FCD6 /* AppDelegate.m */,
-				55293F0C1DF5E8A000A8FCD6 /* ViewController.h */,
-				55293F0D1DF5E8A000A8FCD6 /* ViewController.m */,
-				55293F0F1DF5E8A000A8FCD6 /* Main.storyboard */,
-				55293F121DF5E8A000A8FCD6 /* Assets.xcassets */,
-				55293F141DF5E8A000A8FCD6 /* LaunchScreen.storyboard */,
-				55293F171DF5E8A000A8FCD6 /* Info.plist */,
+				554E42351DF60D510053FB5F /* Model */,
+				554E42341DF60D420053FB5F /* Controller */,
+				554E42331DF60D260053FB5F /* View */,
 				55293F061DF5E8A000A8FCD6 /* Supporting Files */,
 			);
 			path = "location-reminders";
@@ -74,9 +81,38 @@
 		55293F061DF5E8A000A8FCD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55293F091DF5E8A000A8FCD6 /* AppDelegate.h */,
+				55293F0A1DF5E8A000A8FCD6 /* AppDelegate.m */,
+				55293F121DF5E8A000A8FCD6 /* Assets.xcassets */,
+				55293F171DF5E8A000A8FCD6 /* Info.plist */,
 				55293F071DF5E8A000A8FCD6 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		554E42331DF60D260053FB5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55293F0F1DF5E8A000A8FCD6 /* Main.storyboard */,
+				55293F141DF5E8A000A8FCD6 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		554E42341DF60D420053FB5F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				55293F0C1DF5E8A000A8FCD6 /* ViewController.h */,
+				55293F0D1DF5E8A000A8FCD6 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		554E42351DF60D510053FB5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +125,7 @@
 				55293EFF1DF5E8A000A8FCD6 /* Sources */,
 				55293F001DF5E8A000A8FCD6 /* Frameworks */,
 				55293F011DF5E8A000A8FCD6 /* Resources */,
+				554E42361DF611B70053FB5F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -312,6 +349,7 @@
 				55293F1C1DF5E8A000A8FCD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
