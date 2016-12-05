@@ -1,4 +1,4 @@
-#Week 7: Location Reminders
+#Week 8: Location Reminders
 ##Overview
 >We will build a Reminders app that uses locations to create reminders. This
 application will utilize CoreLocation and MapKit.
