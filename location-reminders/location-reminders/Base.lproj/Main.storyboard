@@ -23,10 +23,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MqC-p7-POr">
-                                <rect key="frame" x="56" y="99.5" width="262.5" height="467"/>
+                                <rect key="frame" x="75" y="95" width="225" height="400"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxq-x1-lVI">
+                                <rect key="frame" x="74.5" y="541" width="225" height="30"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="SET ANOTHER LOCATION"/>
+                                <connections>
+                                    <action selector="setAnotherLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRX-TM-mnX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-uh-un8">
+                                <rect key="frame" x="74.5" y="579" width="225" height="30"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="SET LAST LOCATION"/>
+                                <connections>
+                                    <action selector="setFinalLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v5a-tU-fRt"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-ir-Prs">
-                                <rect key="frame" x="56" y="61" width="262.5" height="30"/>
+                                <rect key="frame" x="75" y="503" width="225" height="30"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="SET LOCATION"/>
                                 <connections>
@@ -36,17 +52,26 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5lW-cY-O7D"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="RSs-W6-sNA"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="TJY-ja-hVU"/>
-                            <constraint firstItem="3h3-ir-Prs" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="n8v-Gu-tXP"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="t5J-vS-Jga"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="top" secondItem="3h3-ir-Prs" secondAttribute="bottom" constant="8" id="uPc-SY-uSz"/>
-                            <constraint firstItem="3h3-ir-Prs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xPZ-PD-1g2"/>
+                            <constraint firstItem="3h3-ir-Prs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5vd-aZ-tWg"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="74n-L1-OId"/>
+                            <constraint firstItem="3h3-ir-Prs" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="8TL-tM-Kcq"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="91j-B6-nIa"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bbz-p7-IYV"/>
+                            <constraint firstItem="3h3-ir-Prs" firstAttribute="top" secondItem="MqC-p7-POr" secondAttribute="bottom" constant="8" id="UZX-QX-Zfp"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WmF-PR-afa"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="XMl-3n-xRR"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="ZQL-22-YG7"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="top" secondItem="3h3-ir-Prs" secondAttribute="bottom" constant="8" id="gHc-cd-zxP"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="niw-rT-Hc0"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="top" secondItem="Vxq-x1-lVI" secondAttribute="bottom" constant="8" id="rXV-Qd-cG1"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ug5-v1-t9e"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xAa-FN-owj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="MqC-p7-POr" id="aPs-2R-r5q"/>
+                        <outlet property="setAnotherLocationButton" destination="Vxq-x1-lVI" id="737-qU-sDS"/>
+                        <outlet property="setLastLocationButton" destination="2Oi-uh-un8" id="d7O-gI-jiG"/>
                         <outlet property="setLocationButton" destination="3h3-ir-Prs" id="Idw-7Z-qgU"/>
                     </connections>
                 </viewController>

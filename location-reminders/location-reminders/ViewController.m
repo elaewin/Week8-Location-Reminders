@@ -9,15 +9,20 @@
 #import "ViewController.h"
 
 @import Parse;
+
 @import MapKit;
 
 @interface ViewController ()
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (weak, nonatomic) IBOutlet UIButton *setLocationButton;
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UIButton *setAnotherLocationButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *setLastLocationButton;
 
 @end
 
@@ -71,15 +76,33 @@
 -(IBAction)setLocationPressed:(id)sender {
     
     // CLLocationCoordinate2D = struct, so no * for pointer needed on coordinate variable.
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566, -122.351096);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-23.4423, 151.9148);
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 700, 700);
     
     [self.mapView setRegion:region animated:YES];
     
 }
 
+- (IBAction)setAnotherLocationPressed:(id)sender {
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6510, -122.3473);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 200, 200);
+    
+    [self.mapView setRegion:region animated:YES];
+    
+}
 
+- (IBAction)setFinalLocationPressed:(id)sender {
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(51.5074, -0.1278);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 2000, 2000);
+    
+    [self.mapView setRegion:region animated:YES];
+    
+}
 
 
 @end
