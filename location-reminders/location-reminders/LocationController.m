@@ -51,4 +51,36 @@
     
 }
 
+-(NSMutableArray *)generateLocations {
+    
+    NSMutableArray *seedLocations = [[NSMutableArray alloc]init];
+    
+    NSDictionary *fremontTroll = @{@"latitude": @47.6510, @"longitude": @-122.3473, @"name": @"Fremont Troll"};
+    NSDictionary *spaceNeedle = @{@"latitude": @47.6205, @"longitude": @-122.3493, @"name": @"Space Needle"};
+    NSDictionary *suzzallo = @{@"latitude": @47.6557, @"longitude": @-122.3100, @"name": @"Suzzallo Library"};
+    NSDictionary *smithTower = @{@"latitude": @47.6019, @"longitude": @-122.3339, @"name": @"Smith Tower"};
+    NSDictionary *volunteerPark = @{@"latitude": @47.6321, @"longitude": @-122.3179, @"name": @"Volunteer Park Conservatory"};
+    
+    [seedLocations addObject:fremontTroll];
+    [seedLocations addObject:spaceNeedle];
+    [seedLocations addObject:suzzallo];
+    [seedLocations addObject:smithTower];
+    [seedLocations addObject:volunteerPark];
+    
+    return seedLocations;
+}
+
+-(void)addLocationWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber *)longitude andTitle:(NSString *)title {
+    
+    NSDictionary *newLocation = @{@"latitude": latitude, @"longitude": longitude, @"title": title};
+    
+    [self.annotationsArray addObject:newLocation];
+    
+}
+
+-(void)createPins:(NSMutableArray *)annotationsArray {
+    
+}
+
+
 @end

@@ -23,9 +23,13 @@
 
 @property(strong, nonatomic) CLLocationManager *manager;
 @property(strong, nonatomic) CLLocation *location;
+@property(strong, nonatomic) NSMutableArray *annotationsArray;
 
 @property(weak, nonatomic) id<LocationControllerDelegate> delegate;
 
 +(instancetype) sharedController;
+
+-(void)addLocationWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber *)longitude andTitle:(NSString *)name;
+-(void)createPins:(NSMutableArray *)annotationsArray;
 
 @end

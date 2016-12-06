@@ -86,6 +86,14 @@
     }
 }
 
+-(void)createAnnotations:(NSArray *)annotationsArray {
+    
+
+    
+    
+    
+}
+
 -(IBAction)setLocationPressed:(id)sender {
     
     // CLLocationCoordinate2D = struct, so no * for pointer needed on coordinate variable.
