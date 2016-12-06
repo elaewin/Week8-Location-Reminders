@@ -77,7 +77,7 @@
             
             MKAnnotationView *annotationView = (MKAnnotationView *)sender;
             
-            DetailViewController *detailVC = segue.destinationViewController;
+            DetailViewController *detailVC = (DetailViewController *)segue.destinationViewController;
             
             detailVC.annotationTitle = annotationView.annotation.title;
             detailVC.coordinate = annotationView.annotation.coordinate;

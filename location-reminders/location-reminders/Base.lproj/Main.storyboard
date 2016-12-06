@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="258" y="139"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="FEU-1a-rvo">
             <objects>
-                <viewController id="gat-3z-11H" sceneMemberID="viewController">
+                <viewController id="gat-3z-11H" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CDP-s5-rhU"/>
                         <viewControllerLayoutGuide type="bottom" id="c7N-TV-OMU"/>
