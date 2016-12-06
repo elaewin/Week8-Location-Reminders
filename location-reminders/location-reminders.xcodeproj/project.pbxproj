@@ -17,6 +17,8 @@
 		55524A7F1DF616A50088B308 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55524A7E1DF616A50088B308 /* Parse.framework */; };
 		55524A801DF616D00088B308 /* Parse.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 55524A7E1DF616A50088B308 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55524A811DF616D50088B308 /* Bolts.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 55524A7C1DF6169C0088B308 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55524A851DF741220088B308 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55524A841DF741220088B308 /* LocationController.m */; };
+		55524A881DF74FB80088B308 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55524A871DF74FB80088B308 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,10 @@
 		55524A7C1DF6169C0088B308 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		55524A7E1DF616A50088B308 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		55524A821DF6174D0088B308 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		55524A831DF741220088B308 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		55524A841DF741220088B308 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		55524A861DF74FB80088B308 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		55524A871DF74FB80088B308 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,8 @@
 		554E42341DF60D420053FB5F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				55524A861DF74FB80088B308 /* DetailViewController.h */,
+				55524A871DF74FB80088B308 /* DetailViewController.m */,
 				55293F0C1DF5E8A000A8FCD6 /* ViewController.h */,
 				55293F0D1DF5E8A000A8FCD6 /* ViewController.m */,
 			);
@@ -125,6 +133,8 @@
 		554E42351DF60D510053FB5F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55524A831DF741220088B308 /* LocationController.h */,
+				55524A841DF741220088B308 /* LocationController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -211,6 +221,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55524A881DF74FB80088B308 /* DetailViewController.m in Sources */,
+				55524A851DF741220088B308 /* LocationController.m in Sources */,
 				55293F0E1DF5E8A000A8FCD6 /* ViewController.m in Sources */,
 				55293F0B1DF5E8A000A8FCD6 /* AppDelegate.m in Sources */,
 				55293F081DF5E8A000A8FCD6 /* main.m in Sources */,

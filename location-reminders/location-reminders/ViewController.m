@@ -7,12 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "DetailViewController.h"
 
-@import Parse;
+#import "LocationController.h"
 
 @import MapKit;
+@import Parse;
 
-@interface ViewController ()
+@interface ViewController () <LocationControllerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
@@ -31,24 +33,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
 
-    // PFObject = base class obj for Parse
-    //     Testing to make sure the server is working
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    
-//    testObject[@"foo"] = @"bar";
-//    
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//            return;
-//        }
-//        
-//        if (succeeded) {
-//            NSLog(@"Successfully saved testObject");
-//        }
-//    }];
-
-    //Test to make sure querying works
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -61,7 +45,18 @@
     }];
 
     [self requestPermissions];
+    
+    [[LocationController sharedController] setDelegate:self];
+    self.mapView.delegate = self;
+    
     [self.mapView setShowsUserLocation:YES];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[[LocationController sharedController] manager] startUpdatingLocation];
     
 }
 
@@ -71,6 +66,24 @@
     [self setLocationManager:[[CLLocationManager alloc]init]];
     [self.locationManager requestWhenInUseAuthorization];
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([segue.identifier isEqualToString:@"DetailViewController"]) {
+        
+        if ([sender isKindOfClass:[MKAnnotationView class]]) {
+            
+            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+            
+            DetailViewController *detailVC = segue.destinationViewController;
+            
+            detailVC.annotationTitle = annotationView.annotation.title;
+            detailVC.coordinate = annotationView.annotation.coordinate;
+        }
+        
+    }
 }
 
 -(IBAction)setLocationPressed:(id)sender {
@@ -101,6 +114,64 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 2000, 2000);
     
     [self.mapView setRegion:region animated:YES];
+    
+}
+
+// drop new point when long pressed on map.
+- (IBAction)mapLongPressed:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) { // start when determ. to be long press.
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        
+        // get coords for when user actually touched
+        CLLocationCoordinate2D touchMapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        
+        MKPointAnnotation *newMapPoint = [[MKPointAnnotation alloc]init];
+        newMapPoint.title = @"New Location!";
+        newMapPoint.coordinate = touchMapCoordinate;
+        
+        [self.mapView addAnnotation:newMapPoint];
+    }
+}
+
+// MARK: Location Controller Delegate Methods
+
+-(void)locationControllerUpdatedLocation:(CLLocation *)location {
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0); // 500.0 = meters centered on coordinate.
+    
+    [self.mapView setRegion:region];
+}
+
+// MARK: MKMapView Delegate Methods
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
+    
+    annotationView.annotation = annotation;
+    
+    if (!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"AnnotationView"];
+    }
+    
+    annotationView.canShowCallout = YES;
+    annotationView.animatesDrop = YES; // have to do this so drop animates.
+    
+    UIButton *rightCalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    annotationView.rightCalloutAccessoryView = rightCalloutButton;
+    
+    // in this method is where we will call a function that will assign random pin color. Want to change pin tint color.
+    
+    return annotationView;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    
+    [self performSegueWithIdentifier:@"DetailViewController" sender:view];
     
 }
 
