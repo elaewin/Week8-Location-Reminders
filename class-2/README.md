@@ -1,4 +1,4 @@
-#Week 7 - Class 2:
+#Week 8 - Class 2:
 ##Lab Assignment
 * Using core location, display the users location on the map
 * Add a long press gesture to the map view
