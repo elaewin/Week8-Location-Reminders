@@ -40,7 +40,7 @@
         
         [_manager requestAlwaysAuthorization]; // in a full app, better to request this at a specific point when needed, and not up front (as we're doing here.)
         
-        _locationsArray = [self generateLocations];
+        _locationsArray = [[NSMutableArray alloc]initWithArray: [self generateLocations]];
     }
     return self;
 }
