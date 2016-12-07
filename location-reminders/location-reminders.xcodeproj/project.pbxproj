@@ -20,6 +20,8 @@
 		55524A851DF741220088B308 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55524A841DF741220088B308 /* LocationController.m */; };
 		55524A881DF74FB80088B308 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55524A871DF74FB80088B308 /* DetailViewController.m */; };
 		55524A8B1DF885370088B308 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 55524A8A1DF885370088B308 /* Reminder.m */; };
+		55524A8D1DF8B27A0088B308 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55524A8C1DF8B27A0088B308 /* ParseUI.framework */; };
+		55524A8E1DF8B4240088B308 /* ParseUI.framework in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 55524A8C1DF8B27A0088B308 /* ParseUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				55524A8E1DF8B4240088B308 /* ParseUI.framework in Copy Files (2 items) */,
 				55524A811DF616D50088B308 /* Bolts.framework in Copy Files (2 items) */,
 				55524A801DF616D00088B308 /* Parse.framework in Copy Files (2 items) */,
 			);
@@ -57,6 +60,7 @@
 		55524A871DF74FB80088B308 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		55524A891DF885370088B308 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		55524A8A1DF885370088B308 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
+		55524A8C1DF8B27A0088B308 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55524A8D1DF8B27A0088B308 /* ParseUI.framework in Frameworks */,
 				55524A7F1DF616A50088B308 /* Parse.framework in Frameworks */,
 				55524A7D1DF6169C0088B308 /* Bolts.framework in Frameworks */,
 			);
@@ -147,6 +152,7 @@
 		55524A7B1DF6169C0088B308 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55524A8C1DF8B27A0088B308 /* ParseUI.framework */,
 				55524A7E1DF616A50088B308 /* Parse.framework */,
 				55524A7C1DF6169C0088B308 /* Bolts.framework */,
 			);
@@ -355,6 +361,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "location-reminders/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -371,6 +378,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "location-reminders/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

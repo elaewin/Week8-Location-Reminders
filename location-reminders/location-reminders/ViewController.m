@@ -8,6 +8,7 @@
 
 @import MapKit;
 @import Parse;
+@import ParseUI;
 
 #import "ViewController.h"
 #import "DetailViewController.h"
@@ -15,7 +16,7 @@
 #import "Reminder.h"
 
 
-@interface ViewController () <LocationControllerDelegate, MKMapViewDelegate>
+@interface ViewController () <LocationControllerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -245,6 +246,32 @@
     
     return renderer;
 }
+
+// MARK: PARSE UI
+
+-(void)login {
+    if (![PFUser currentUser]) {
+        PFLogInViewController *loginVC = [[PFLogInViewController alloc]init];
+        
+        // become delegate for both ParseUI login and signup VCs
+        loginVC.delegate = self;
+        loginVC.signUpController.delegate = self;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
 
