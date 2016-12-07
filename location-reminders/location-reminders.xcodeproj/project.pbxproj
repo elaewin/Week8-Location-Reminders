@@ -127,6 +127,8 @@
 			children = (
 				55524A861DF74FB80088B308 /* DetailViewController.h */,
 				55524A871DF74FB80088B308 /* DetailViewController.m */,
+				55524A831DF741220088B308 /* LocationController.h */,
+				55524A841DF741220088B308 /* LocationController.m */,
 				55293F0C1DF5E8A000A8FCD6 /* ViewController.h */,
 				55293F0D1DF5E8A000A8FCD6 /* ViewController.m */,
 			);
@@ -138,8 +140,6 @@
 			children = (
 				55524A891DF885370088B308 /* Reminder.h */,
 				55524A8A1DF885370088B308 /* Reminder.m */,
-				55524A831DF741220088B308 /* LocationController.h */,
-				55524A841DF741220088B308 /* LocationController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

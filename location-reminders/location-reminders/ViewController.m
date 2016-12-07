@@ -38,6 +38,10 @@
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
         }
+        
+        if (succeeded) {
+            NSLog(@"Check your dashboard, 'cause just saved new Reminder!");
+        }
     }];
 
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
@@ -67,6 +71,21 @@
     
     [[[LocationController sharedController] manager] startUpdatingLocation];
     
+    // add a notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderCreatedNotificationFired) name:@"ReminderCreated" object:nil];
+    
+}
+
+-(void)dealloc {
+    // can't call dealloc's super when overriding: exception to usual rule.
+    
+    // remove self as observer, so it doesn't cause a crash.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderCreated" object:nil];
+}
+
+//selector for notification
+-(void)reminderCreatedNotificationFired {
+    NSLog(@"Reminder was created. Log fired from %@", self);
 }
 
 -(void)requestPermissions {
@@ -90,6 +109,17 @@
             
             detailVC.annotationTitle = annotationView.annotation.title;
             detailVC.coordinate = annotationView.annotation.coordinate;
+            
+            // assign completion for DetailViewControllerCompletion here (this is a block)
+            __weak typeof(self) bruce = self;
+            
+            detailVC.completion = ^(MKCircle *circle) {
+                __strong typeof(bruce) hulk = bruce;
+                
+                [hulk.mapView removeAnnotation:annotationView.annotation];
+                [hulk.mapView addOverlay:circle];
+                
+            };
         }
         
     }
@@ -162,7 +192,7 @@
     return colors[index];
 }
 
-// MARK: Location Controller Delegate Methods
+// MARK: LocationControllerDelegate Methods
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location {
     
@@ -171,7 +201,7 @@
     [self.mapView setRegion:region];
 }
 
-// MARK: MKMapView Delegate Methods
+// MARK: MKMapViewDelegate Methods
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -204,5 +234,25 @@
     
 }
 
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+    
+    // format the overlay
+    renderer.fillColor = [UIColor blueColor];
+    renderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
+    renderer.alpha = 0.5;
+    
+    return renderer;
+}
 
 @end
+
+
+
+
+
+
+
+
+
