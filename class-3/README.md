@@ -4,6 +4,8 @@
 * Add the ability to sign up and login to your app
 	* Subclass the `PFLoginViewController` and `PFSignUpViewController` to make your own custom Login and SignUp Controllers.  
 	* These subclasses should not display the `Parse` placeholder images.  
+	* HINT: https://parseplatform.github.io/Parse-SDK-iOS-OSX/api/index.html
+	
 * Add a model class for your reminder by subclassing PFObject.
 * Add a visual map annotation wherever a reminder is added.
   * use MKCircle to present a map overlay.
