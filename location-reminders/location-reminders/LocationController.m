@@ -53,6 +53,17 @@
     
 }
 
+-(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
+    
+    CLLocationCoordinate2D newCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    MKPointAnnotation *newLocation = [[MKPointAnnotation alloc]init];
+    newLocation.title = title;
+    newLocation.coordinate = newCoordinate;
+    
+    return newLocation;
+}
+
 -(NSMutableArray *)generateLocations {
     
     NSMutableArray *locations = [[NSMutableArray alloc]init];
@@ -72,16 +83,6 @@
     return locations;
 }
 
--(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
-    
-    CLLocationCoordinate2D newCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    
-    MKPointAnnotation *newLocation = [[MKPointAnnotation alloc]init];
-    newLocation.title = title;
-    newLocation.coordinate = newCoordinate;
-    
-    return newLocation;
-}
 
 
 @end

@@ -6,24 +6,21 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "DetailViewController.h"
-
-#import "LocationController.h"
-
 @import MapKit;
 @import Parse;
+
+#import "ViewController.h"
+#import "DetailViewController.h"
+#import "LocationController.h"
+#import "Reminder.h"
+
 
 @interface ViewController () <LocationControllerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
 @property (weak, nonatomic) IBOutlet UIButton *setLocationButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *setAnotherLocationButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *setLastLocationButton;
 
 @end
@@ -32,6 +29,16 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    Reminder *testReminder = [Reminder object];
+    
+    testReminder.title = @"New Reminder! So Exciting.";
+    
+    [testReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
 
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
     
@@ -90,10 +97,12 @@
 
 -(void)createAnnotations {
     
-    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
-        
-        [self.mapView addAnnotation:location];
-    }
+    [self.mapView addAnnotations:[[LocationController sharedController] locationsArray]];
+    
+//    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
+//        
+//        [self.mapView addAnnotation:location];
+//    }
     
 }
 
@@ -148,7 +157,7 @@
 -(UIColor *)getRandomColor {
     NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
     
-    int index = arc4random_uniform(10);
+    int index = arc4random_uniform(colors.count);
     
     return colors[index];
 }
