@@ -39,6 +39,8 @@
         _manager.distanceFilter = 100; // distance in meters.
         
         [_manager requestAlwaysAuthorization]; // in a full app, better to request this at a specific point when needed, and not up front (as we're doing here.)
+        
+        _locationsArray = [[NSMutableArray alloc]initWithArray: [self generateLocations]];
     }
     return self;
 }
@@ -50,5 +52,36 @@
     [self setLocation:locations.lastObject]; // re-set the location every time the manager updates the location
     
 }
+
+-(NSMutableArray *)generateLocations {
+    
+    NSMutableArray *locations = [[NSMutableArray alloc]init];
+    
+    MKPointAnnotation *fremontTroll = [self createAnnotationWithLatitude:47.6510 andLongitude:-122.3473 andTitle:@"Fremont Troll"];
+    MKPointAnnotation *spaceNeedle = [self createAnnotationWithLatitude:47.6205 andLongitude:-122.3493 andTitle:@"Space Needle"];
+    MKPointAnnotation *suzzallo = [self createAnnotationWithLatitude:47.6557 andLongitude:-122.3100 andTitle:@"Suzzallo Library"];
+    MKPointAnnotation *smithTower = [self createAnnotationWithLatitude:47.6019 andLongitude:-122.3339 andTitle:@"Smith Tower"];
+    MKPointAnnotation *volunteerPark = [self createAnnotationWithLatitude:47.6321 andLongitude:-122.3179 andTitle:@"Volunteer Park Conservatory"];
+    
+    [locations addObject:fremontTroll];
+    [locations addObject:spaceNeedle];
+    [locations addObject:suzzallo];
+    [locations addObject:smithTower];
+    [locations addObject:volunteerPark];
+    
+    return locations;
+}
+
+-(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
+    
+    CLLocationCoordinate2D newCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    MKPointAnnotation *newLocation = [[MKPointAnnotation alloc]init];
+    newLocation.title = title;
+    newLocation.coordinate = newCoordinate;
+    
+    return newLocation;
+}
+
 
 @end
