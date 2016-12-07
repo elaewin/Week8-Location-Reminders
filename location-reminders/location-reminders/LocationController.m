@@ -39,6 +39,8 @@
         _manager.distanceFilter = 100; // distance in meters.
         
         [_manager requestAlwaysAuthorization]; // in a full app, better to request this at a specific point when needed, and not up front (as we're doing here.)
+        
+        _locationsArray = [self generateLocations];
     }
     return self;
 }
@@ -53,33 +55,32 @@
 
 -(NSMutableArray *)generateLocations {
     
-    NSMutableArray *seedLocations = [[NSMutableArray alloc]init];
+    NSMutableArray *locations = [[NSMutableArray alloc]init];
     
-    NSDictionary *fremontTroll = @{@"latitude": @47.6510, @"longitude": @-122.3473, @"name": @"Fremont Troll"};
-    NSDictionary *spaceNeedle = @{@"latitude": @47.6205, @"longitude": @-122.3493, @"name": @"Space Needle"};
-    NSDictionary *suzzallo = @{@"latitude": @47.6557, @"longitude": @-122.3100, @"name": @"Suzzallo Library"};
-    NSDictionary *smithTower = @{@"latitude": @47.6019, @"longitude": @-122.3339, @"name": @"Smith Tower"};
-    NSDictionary *volunteerPark = @{@"latitude": @47.6321, @"longitude": @-122.3179, @"name": @"Volunteer Park Conservatory"};
+    MKPointAnnotation *fremontTroll = [self createAnnotationWithLatitude:47.6510 andLongitude:-122.3473 andTitle:@"Fremont Troll"];
+    MKPointAnnotation *spaceNeedle = [self createAnnotationWithLatitude:47.6205 andLongitude:-122.3493 andTitle:@"Space Needle"];
+    MKPointAnnotation *suzzallo = [self createAnnotationWithLatitude:47.6557 andLongitude:-122.3100 andTitle:@"Suzzallo Library"];
+    MKPointAnnotation *smithTower = [self createAnnotationWithLatitude:47.6019 andLongitude:-122.3339 andTitle:@"Smith Tower"];
+    MKPointAnnotation *volunteerPark = [self createAnnotationWithLatitude:47.6321 andLongitude:-122.3179 andTitle:@"Volunteer Park Conservatory"];
     
-    [seedLocations addObject:fremontTroll];
-    [seedLocations addObject:spaceNeedle];
-    [seedLocations addObject:suzzallo];
-    [seedLocations addObject:smithTower];
-    [seedLocations addObject:volunteerPark];
+    [locations addObject:fremontTroll];
+    [locations addObject:spaceNeedle];
+    [locations addObject:suzzallo];
+    [locations addObject:smithTower];
+    [locations addObject:volunteerPark];
     
-    return seedLocations;
+    return locations;
 }
 
--(void)addLocationWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber *)longitude andTitle:(NSString *)title {
+-(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
     
-    NSDictionary *newLocation = @{@"latitude": latitude, @"longitude": longitude, @"title": title};
+    CLLocationCoordinate2D newCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
     
-    [self.annotationsArray addObject:newLocation];
+    MKPointAnnotation *newLocation = [[MKPointAnnotation alloc]init];
+    newLocation.title = title;
+    newLocation.coordinate = newCoordinate;
     
-}
-
--(void)createPins:(NSMutableArray *)annotationsArray {
-    
+    return newLocation;
 }
 
 

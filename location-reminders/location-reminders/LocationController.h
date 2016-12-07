@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @import CoreLocation;
+@import MapKit;
 
 // define protocol here because is very simple & obvious to anyone else looking at the code
 // (vs. in new file)
@@ -23,13 +24,14 @@
 
 @property(strong, nonatomic) CLLocationManager *manager;
 @property(strong, nonatomic) CLLocation *location;
-@property(strong, nonatomic) NSMutableArray *annotationsArray;
+@property(strong, nonatomic) NSMutableArray *locationsArray;
 
 @property(weak, nonatomic) id<LocationControllerDelegate> delegate;
 
 +(instancetype) sharedController;
 
--(void)addLocationWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber *)longitude andTitle:(NSString *)name;
--(void)createPins:(NSMutableArray *)annotationsArray;
+-(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title;
+
+//-(void)createPins:(NSMutableArray *)locationsArray;
 
 @end

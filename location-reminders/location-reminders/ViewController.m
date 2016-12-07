@@ -56,6 +56,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self createAnnotations];
+    
     [[[LocationController sharedController] manager] startUpdatingLocation];
     
 }
@@ -86,20 +88,21 @@
     }
 }
 
--(void)createAnnotations:(NSArray *)annotationsArray {
+-(void)createAnnotations {
     
-
-    
-    
+    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
+        
+        [self.mapView addAnnotation:location];
+    }
     
 }
 
 -(IBAction)setLocationPressed:(id)sender {
     
     // CLLocationCoordinate2D = struct, so no * for pointer needed on coordinate variable.
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(-23.4423, 151.9148);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6095, -122.3256);
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 700, 700);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 10000, 10000);
     
     [self.mapView setRegion:region animated:YES];
     
@@ -142,6 +145,14 @@
     }
 }
 
+-(UIColor *)getRandomColor {
+    NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
+    
+    int index = arc4random_uniform(10);
+    
+    return colors[index];
+}
+
 // MARK: Location Controller Delegate Methods
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location {
@@ -168,6 +179,7 @@
     
     annotationView.canShowCallout = YES;
     annotationView.animatesDrop = YES; // have to do this so drop animates.
+    annotationView.pinTintColor = [self getRandomColor];
     
     UIButton *rightCalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.rightCalloutAccessoryView = rightCalloutButton;
