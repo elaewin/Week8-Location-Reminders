@@ -17,11 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self formatLoginView];
     [self setupSignUpController];
-//    self.signUpController = [[SignupViewController alloc]init];
-//    self.signUpController.emailAsUsername = nil;
    
+    
+}
+
+-(void)formatLoginView {
+    // background image
     UIImageView *backgroundImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"PLC_Mosaic_Stars"]];
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     backgroundImage.alpha = 0.8;
@@ -40,6 +43,7 @@
     
     [self.view layoutIfNeeded];
     
+    // label to replace logo
     UILabel *label = [[UILabel alloc]init];
     
     label.text = @"Location Reminders";
@@ -48,9 +52,20 @@
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.shadowColor = [UIColor darkGrayColor];
-
+    
     self.logInView.logo = label;
     
+    // formatting fields
+    self.logInView.usernameField.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"User Name"
+                                    attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+    self.logInView.passwordField.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Password"
+                                    attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+//    self.logInView.logInButton.backgroundColor = [UIColor whiteColor];
+
+
+
 }
 
 
