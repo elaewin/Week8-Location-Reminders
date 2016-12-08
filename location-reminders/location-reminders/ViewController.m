@@ -272,7 +272,7 @@
     [self setupAdditionalUI];
 }
 
--(void)signUpViewController:(SignupViewController *)signUpController didSignUpUser:(PFUser *)user {
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self setupAdditionalUI];
 }
