@@ -4,6 +4,9 @@
 * Add local notifications when the user enters a region
 * Upon creation of your reminder, upload to ParseServer.
 * On first launch, your app should fetch all reminders from Parse and display on the mapView.
+* **BONUS:**:
+  * Create 2 text fields to take in the Radius and Title of the New Reminder to save to parse.  
+  * Add any additional text fields you'd for subTitle, or content, etc. Just be sure to add these to your Reminder class.
 
 ###Reading Assignment:
 * Programming Interviews Exposed: Binary Search Tree
