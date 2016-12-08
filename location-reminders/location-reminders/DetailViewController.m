@@ -62,6 +62,9 @@
                     CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:hulk.coordinate radius:radius.floatValue identifier:reminderTitle];
                     
                     [[LocationController sharedController].manager startMonitoringForRegion:region];
+                    
+                    // register notification for reminder
+                    [hulk createNotificationForRegion:region withName:reminderTitle];
                 }
                 
                 // draw circle on map.
@@ -74,7 +77,27 @@
     }];
 }
 
+-(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName {
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"Location Reminder";
+    content.subtitle = reminderName;
+    content.body = @"Your reminder info goes here!";
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNLocationNotificationTrigger *trigger = [UNLocationNotificationTrigger triggerWithRegion:region repeats:YES];
 
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:reminderName content:content trigger:trigger];
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error adding request to Notification Center with Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"No error adding notification.");
+        }
+    }];
+}
 
 
 @end

@@ -8,7 +8,6 @@
 
 #import "LocationController.h"
 @import NotificationCenter;
-@import UserNotifications;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -58,7 +57,6 @@
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"User DID ENTER REGION (%@). No bug!", region);
-    [self createNotificationForRegion:region withName:region.identifier];
 }
 
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
@@ -108,26 +106,5 @@
     NSLog(@"Exited Region!");
 }
 
--(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName {
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    content.title = @"Location Reminder";
-    content.subtitle = reminderName;
-    content.body = @"Your reminder info goes here!";
-    content.sound = [UNNotificationSound defaultSound];
-    
-    UNLocationNotificationTrigger *trigger = [UNLocationNotificationTrigger triggerWithRegion:region repeats:YES];
-    
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:reminderName content:content trigger:trigger];
-    
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"Error adding request to Notification Center with Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"No error adding notification.");
-        }
-    }];
-}
 
 @end
