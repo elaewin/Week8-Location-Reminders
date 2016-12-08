@@ -13,6 +13,8 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 #import "LocationController.h"
+#import "LoginViewController.h"
+#import "SignupViewController.h"
 #import "Reminder.h"
 
 
@@ -31,20 +33,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    Reminder *testReminder = [Reminder object];
-    
-    testReminder.title = @"New Reminder! So Exciting.";
-    
-    [testReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
-        
-        if (succeeded) {
-            NSLog(@"Check your dashboard, 'cause just saved new Reminder!");
-        }
-    }];
-
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -75,6 +63,7 @@
     // add a notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderCreatedNotificationFired) name:@"ReminderCreated" object:nil];
     
+    [self login];
 }
 
 -(void)dealloc {
@@ -251,25 +240,46 @@
 
 -(void)login {
     if (![PFUser currentUser]) {
-        PFLogInViewController *loginVC = [[PFLogInViewController alloc]init];
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
         
         // become delegate for both ParseUI login and signup VCs
         loginVC.delegate = self;
         loginVC.signUpController.delegate = self;
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+        
+    } else {
+        [self setupAdditionalUI];
     }
 }
 
+-(void)setupAdditionalUI {
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signOutPressed)];
+    
+    self.navigationItem.leftBarButtonItem = signOutButton;
+}
 
+-(void)signOutPressed {
+    [PFUser logOut];
+    NSLog(@"Current user signed out.");
+    [self login];
+}
 
+// MARK: ParseUI Delegate Methods
 
+-(void)logInViewController:(LoginViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
 
+-(void)signUpViewController:(SignupViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
 
-
-
-
-
-
-
+-(void)logInViewControllerDidCancelLogIn:(LoginViewController *)logInController {
+    [self login];
+}
 
 
 

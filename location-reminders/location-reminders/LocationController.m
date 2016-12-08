@@ -72,7 +72,7 @@
     MKPointAnnotation *spaceNeedle = [self createAnnotationWithLatitude:47.6205 andLongitude:-122.3493 andTitle:@"Space Needle"];
     MKPointAnnotation *suzzallo = [self createAnnotationWithLatitude:47.6557 andLongitude:-122.3100 andTitle:@"Suzzallo Library"];
     MKPointAnnotation *smithTower = [self createAnnotationWithLatitude:47.6019 andLongitude:-122.3339 andTitle:@"Smith Tower"];
-    MKPointAnnotation *volunteerPark = [self createAnnotationWithLatitude:47.6321 andLongitude:-122.3179 andTitle:@"Volunteer Park Conservatory"];
+    MKPointAnnotation *volunteerPark = [self createAnnotationWithLatitude:47.632 andLongitude:-122.316 andTitle:@"Volunteer Park Conservatory"];
     
     [locations addObject:fremontTroll];
     [locations addObject:spaceNeedle];

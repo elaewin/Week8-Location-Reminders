@@ -32,6 +32,4 @@
 
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title;
 
-//-(void)createPins:(NSMutableArray *)locationsArray;
-
 @end
