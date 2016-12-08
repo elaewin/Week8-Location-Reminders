@@ -10,6 +10,8 @@
 #import "Reminder.h"
 #import "LocationController.h"
 
+@import UserNotifications;
+
 @interface DetailViewController ()
 
 @end
@@ -35,21 +37,44 @@
     Reminder *newReminder = [Reminder object];
     newReminder.title = reminderTitle;
     newReminder.radius = radius;
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
-    PFGeoPoint *reminderPoint = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    __weak typeof(self) bruce = self;
     
-    newReminder.location = reminderPoint;
-    
-    // send a notification that a reminder was saved.
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderCreated" object:nil];
-    
-    if (self.completion) {
-        MKCircle *newCircle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius.floatValue];
-        self.completion(newCircle);
+    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+        __strong typeof(bruce) hulk = bruce;
+        
+        if (error) {
+            NSLog(@"Error saving reminder: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Success saving new reminder to Parse: %i", succeeded);
+            
+            
+//            Send a notification that a reminder was saved.
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderCreated" object:nil];
+            
+            if (hulk.completion) {
+                
+                // set up region monitoring
+                if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                    
+                    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:hulk.coordinate radius:radius.floatValue identifier:reminderTitle];
+                    
+                    [[LocationController sharedController].manager startMonitoringForRegion:region];
+                }
+                
+                // draw circle on map.
+                MKCircle *newCircle = [MKCircle circleWithCenterCoordinate:hulk.coordinate radius:radius.floatValue];
+                hulk.completion(newCircle);
+                
+                [hulk.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }];
 }
+
+
 
 
 @end

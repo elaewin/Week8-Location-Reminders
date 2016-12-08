@@ -7,11 +7,12 @@
 //
 
 #import "LocationController.h"
+@import NotificationCenter;
+@import UserNotifications;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
 @end
-
 
 @implementation LocationController
 
@@ -26,7 +27,6 @@
     
     return sharedController;
 }
-
 
 -(instancetype)init {
     self = [super init];
@@ -50,7 +50,15 @@
     [self.delegate locationControllerUpdatedLocation:locations.lastObject];
     
     [self setLocation:locations.lastObject]; // re-set the location every time the manager updates the location
-    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    NSLog(@"Started monitoring region for: %@", region);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    NSLog(@"User DID ENTER REGION (%@). No bug!", region);
+    [self createNotificationForRegion:region withName:region.identifier];
 }
 
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
@@ -83,6 +91,43 @@
     return locations;
 }
 
+// Error handling
+-(void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
 
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    NSLog(@"Exited Region!");
+}
+
+-(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName {
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"Location Reminder";
+    content.subtitle = reminderName;
+    content.body = @"Your reminder info goes here!";
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNLocationNotificationTrigger *trigger = [UNLocationNotificationTrigger triggerWithRegion:region repeats:YES];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:reminderName content:content trigger:trigger];
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error adding request to Notification Center with Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"No error adding notification.");
+        }
+    }];
+}
 
 @end
