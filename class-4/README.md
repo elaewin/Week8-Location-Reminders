@@ -3,7 +3,7 @@
 * Use Region monitoring and schedule a location based reminder in the AddReminderDetailViewController
 * Add local notifications when the user enters a region
 * Upon creation of your reminder, upload to ParseServer.
-* On first launch, your app should fetch all reminders and display on the mapView.
+* On first launch, your app should fetch all reminders from Parse and display on the mapView.
 
 ###Reading Assignment:
 * Cracking the coding Interview/Programming Interviews Exposed:
