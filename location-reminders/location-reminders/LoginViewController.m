@@ -58,16 +58,12 @@
     // formatting fields
     self.logInView.usernameField.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"User Name"
-                                    attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+                                    attributes:@{NSFontAttributeName: [UIFont italicSystemFontOfSize:17.0]}];
     self.logInView.passwordField.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"Password"
-                                    attributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
-//    self.logInView.logInButton.backgroundColor = [UIColor whiteColor];
-
-
-
+                                    attributes:@{NSFontAttributeName: [UIFont italicSystemFontOfSize:17.0]}];
+    [self.logInView.passwordForgottenButton setTitleColor:[UIColor colorWithRed:(1.0) green:0 blue:0 alpha:1.0] forState:UIControlStateNormal];
 }
-
 
 -(void)setupSignUpController {
     UIImageView *backgroundImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"PLC_Mosaic_Stars"]];
