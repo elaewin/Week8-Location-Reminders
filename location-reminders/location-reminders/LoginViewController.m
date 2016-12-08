@@ -63,6 +63,7 @@
     [[NSAttributedString alloc] initWithString:@"Password"
                                     attributes:@{NSFontAttributeName: [UIFont italicSystemFontOfSize:17.0]}];
     [self.logInView.passwordForgottenButton setTitleColor:[UIColor colorWithRed:(1.0) green:0 blue:0 alpha:1.0] forState:UIControlStateNormal];
+//    [self.logInView.signUpButton setBackgroundColor:[UIColor colorWithRed:0.2 green:0.4 blue:0.7 alpha:1.0]];
 }
 
 -(void)setupSignUpController {
