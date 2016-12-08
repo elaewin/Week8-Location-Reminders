@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     self.signUpController = [[SignupViewController alloc]init];
-    self.signUpController.emailAsUsername = NO;
+//    self.signUpController.emailAsUsername = NO;
     
     UIImageView *backgroundImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"PLC_Mosaic_Stars"]];
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
