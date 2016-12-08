@@ -6,24 +6,24 @@
 //  Copyright © 2016 Erica Winberry. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "DetailViewController.h"
-
-#import "LocationController.h"
-
 @import MapKit;
 @import Parse;
+@import ParseUI;
 
-@interface ViewController () <LocationControllerDelegate, MKMapViewDelegate>
+#import "ViewController.h"
+#import "DetailViewController.h"
+#import "LocationController.h"
+#import "LoginViewController.h"
+#import "SignupViewController.h"
+#import "Reminder.h"
+
+
+@interface ViewController () <LocationControllerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
 @property (weak, nonatomic) IBOutlet UIButton *setLocationButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *setAnotherLocationButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *setLastLocationButton;
 
 @end
@@ -32,7 +32,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-
+    
     PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -60,6 +60,22 @@
     
     [[[LocationController sharedController] manager] startUpdatingLocation];
     
+    // add a notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderCreatedNotificationFired) name:@"ReminderCreated" object:nil];
+    
+    [self login];
+}
+
+-(void)dealloc {
+    // can't call dealloc's super when overriding: exception to usual rule.
+    
+    // remove self as observer, so it doesn't cause a crash.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderCreated" object:nil];
+}
+
+//selector for notification
+-(void)reminderCreatedNotificationFired {
+    NSLog(@"Reminder was created. Log fired from %@", self);
 }
 
 -(void)requestPermissions {
@@ -83,6 +99,17 @@
             
             detailVC.annotationTitle = annotationView.annotation.title;
             detailVC.coordinate = annotationView.annotation.coordinate;
+            
+            // assign completion for DetailViewControllerCompletion here (this is a block)
+            __weak typeof(self) bruce = self;
+            
+            detailVC.completion = ^(MKCircle *circle) {
+                __strong typeof(bruce) hulk = bruce;
+                
+                [hulk.mapView removeAnnotation:annotationView.annotation];
+                [hulk.mapView addOverlay:circle];
+                
+            };
         }
         
     }
@@ -90,10 +117,12 @@
 
 -(void)createAnnotations {
     
-    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
-        
-        [self.mapView addAnnotation:location];
-    }
+    [self.mapView addAnnotations:[[LocationController sharedController] locationsArray]];
+    
+//    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
+//        
+//        [self.mapView addAnnotation:location];
+//    }
     
 }
 
@@ -148,12 +177,12 @@
 -(UIColor *)getRandomColor {
     NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
     
-    int index = arc4random_uniform(10);
+    int index = arc4random_uniform(colors.count);
     
     return colors[index];
 }
 
-// MARK: Location Controller Delegate Methods
+// MARK: LocationControllerDelegate Methods
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location {
     
@@ -162,7 +191,7 @@
     [self.mapView setRegion:region];
 }
 
-// MARK: MKMapView Delegate Methods
+// MARK: MKMapViewDelegate Methods
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -195,5 +224,72 @@
     
 }
 
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+    
+    // format the overlay
+    renderer.fillColor = [UIColor blueColor];
+    renderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
+    renderer.alpha = 0.5;
+    
+    return renderer;
+}
+
+// MARK: PARSE UI
+
+-(void)login {
+    if (![PFUser currentUser]) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        
+        // become delegate for both ParseUI login and signup VCs
+        loginVC.delegate = self;
+        loginVC.signUpController.delegate = self;
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+        
+    } else {
+        [self setupAdditionalUI];
+    }
+}
+
+-(void)setupAdditionalUI {
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signOutPressed)];
+    
+    self.navigationItem.leftBarButtonItem = signOutButton;
+}
+
+-(void)signOutPressed {
+    [PFUser logOut];
+    NSLog(@"Current user signed out.");
+    [self login];
+}
+
+// MARK: ParseUI Delegate Methods
+
+-(void)logInViewController:(LoginViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
+
+-(void)logInViewControllerDidCancelLogIn:(LoginViewController *)logInController {
+    [self login];
+}
+
+
 
 @end
+
+
+
+
+
+
+
+
+
