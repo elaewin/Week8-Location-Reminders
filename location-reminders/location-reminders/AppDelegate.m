@@ -10,6 +10,7 @@
 #import "Constants.h"
 
 @import Parse;
+@import UserNotifications;
 
 @interface AppDelegate ()
 
@@ -25,7 +26,26 @@
         configuration.server = KServerURL;
     }]];
     
+    [self registerForNotifications];
+    
     return YES;
+}
+
+-(void)registerForNotifications {
+    
+    // options are an enum, so can list multiple separated by pipes.
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"User Notifications Error: %@", error.localizedDescription);
+        }
+        
+        if (granted) {
+            NSLog(@"We have permissions for UserNotifications");
+        }
+    }];
 }
 
 

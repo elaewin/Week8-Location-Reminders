@@ -7,11 +7,11 @@
 //
 
 #import "LocationController.h"
+@import NotificationCenter;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
 @end
-
 
 @implementation LocationController
 
@@ -26,7 +26,6 @@
     
     return sharedController;
 }
-
 
 -(instancetype)init {
     self = [super init];
@@ -50,7 +49,14 @@
     [self.delegate locationControllerUpdatedLocation:locations.lastObject];
     
     [self setLocation:locations.lastObject]; // re-set the location every time the manager updates the location
-    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    NSLog(@"Started monitoring region for: %@", region);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    NSLog(@"User DID ENTER REGION (%@). No bug!", region);
 }
 
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title {
@@ -83,6 +89,22 @@
     return locations;
 }
 
+// Error handling
+-(void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error {
+    NSLog(@"ERROR: %@", error.localizedDescription);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    NSLog(@"Exited Region!");
+}
 
 
 @end

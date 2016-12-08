@@ -18,9 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self formatLoginView];
-    [self setupSignUpController];
-   
-    
+    [self formatSignUpController];
 }
 
 -(void)formatLoginView {
@@ -65,7 +63,7 @@
     [self.logInView.passwordForgottenButton setTitleColor:[UIColor colorWithRed:(1.0) green:0 blue:0 alpha:1.0] forState:UIControlStateNormal];
 }
 
--(void)setupSignUpController {
+-(void)formatSignUpController {
     UIImageView *backgroundImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"PLC_Mosaic_Stars"]];
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     backgroundImage.alpha = 0.8;
