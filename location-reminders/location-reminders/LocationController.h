@@ -37,4 +37,6 @@
 
 -(MKCircle *)beginMonitoringCircularRegion:(Reminder *)reminder;
 
+-(UIColor *)getRandomColor;
+
 @end

@@ -59,9 +59,8 @@
             for (Reminder *reminder in objects) {
                 NSLog(@"%@", reminder.objectId);
                 
-                
-                
-//                [hulk.mapView addOverlay:circle];
+                MKCircle *circle = [[LocationController sharedController] beginMonitoringCircularRegion:reminder];
+                [hulk.mapView addOverlay:circle];
             }
         } else {
             // Log details of the failure
@@ -200,14 +199,6 @@
     }
 }
 
--(UIColor *)getRandomColor {
-    NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
-    
-    int index = arc4random_uniform(colors.count);
-    
-    return colors[index];
-}
-
 // MARK: LocationControllerDelegate Methods
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location {
@@ -236,7 +227,7 @@
     
     annotationView.canShowCallout = YES;
     annotationView.animatesDrop = YES; // have to do this so drop animates.
-    annotationView.pinTintColor = [self getRandomColor];
+    annotationView.pinTintColor = [[LocationController sharedController] getRandomColor];
     
     UIButton *rightCalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.rightCalloutAccessoryView = rightCalloutButton;
@@ -257,8 +248,8 @@
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
     
     // format the overlay
-    renderer.fillColor = [UIColor blueColor];
-    renderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.25];
+    renderer.fillColor = [[LocationController sharedController] getRandomColor];
+    renderer.strokeColor = [renderer.fillColor colorWithAlphaComponent:0.25];
     renderer.alpha = 0.5;
     
     return renderer;

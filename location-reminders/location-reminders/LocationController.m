@@ -110,6 +110,14 @@
 
 // MARK: Notifications
 
+-(UIColor *)getRandomColor {
+    NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
+    
+    int index = arc4random_uniform(colors.count);
+    
+    return colors[index];
+}
+
 -(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName andBody:(NSString *)body {
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     content.title = @"Location Reminder";
