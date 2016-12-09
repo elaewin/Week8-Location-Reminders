@@ -7,6 +7,7 @@
 //
 
 #import "LocationController.h"
+#import "Reminder.h"
 @import NotificationCenter;
 @import UserNotifications;
 
@@ -131,5 +132,21 @@
     }];
 }
 
+-(MKCircle *)beginMonitoringCircularRegion:(Reminder *)reminder {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+    
+    if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+        
+        CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:coordinate radius:reminder.radius.floatValue identifier:reminder.title];
+        
+        [self.manager startMonitoringForRegion:region];
+        
+        [self createNotificationForRegion:region withName:reminder.title andBody:reminder.body];
+    }
+    
+    MKCircle *newCircle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.floatValue];
+    
+    return newCircle;
+}
 
 @end

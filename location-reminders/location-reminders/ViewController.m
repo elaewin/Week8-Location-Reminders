@@ -61,7 +61,7 @@
                 
                 
                 
-                [hulk.mapView addOverlay:circle];
+//                [hulk.mapView addOverlay:circle];
             }
         } else {
             // Log details of the failure

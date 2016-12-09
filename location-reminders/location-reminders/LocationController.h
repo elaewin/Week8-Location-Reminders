@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Reminder.h"
 @import CoreLocation;
 @import MapKit;
 
@@ -33,5 +34,7 @@
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title;
 
 -(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName andBody:(NSString *)body;
+
+-(MKCircle *)beginMonitoringCircularRegion:(Reminder *)reminder;
 
 @end

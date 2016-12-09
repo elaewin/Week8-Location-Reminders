@@ -58,18 +58,7 @@
             if (hulk.completion) {
                 
                 // set up region monitoring
-                if([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-                    
-                    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:hulk.coordinate radius:radius.floatValue identifier:reminderTitle];
-                    
-                    [[LocationController sharedController].manager startMonitoringForRegion:region];
-                    
-                    // register notification for reminder
-                    [[LocationController sharedController] createNotificationForRegion:region withName:reminderTitle andBody:reminderBody];
-                }
-                
-                // draw circle on map.
-                MKCircle *newCircle = [MKCircle circleWithCenterCoordinate:hulk.coordinate radius:radius.floatValue];
+                MKCircle *newCircle = [[LocationController sharedController] beginMonitoringCircularRegion:newReminder];
                 hulk.completion(newCircle);
                 
                 [hulk.navigationController popViewControllerAnimated:YES];
