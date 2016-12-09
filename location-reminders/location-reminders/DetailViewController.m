@@ -12,7 +12,7 @@
 
 @import UserNotifications;
 
-@interface DetailViewController ()
+@interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @end
 
@@ -27,16 +27,17 @@
           self.coordinate.longitude);
 }
 
-
 - (IBAction)saveReminderPressed:(UIButton *)sender {
     
     // placeholder data (replace w/text field input in homework)
-    NSString *reminderTitle = @"New Reminder";
-    NSNumber *radius = [NSNumber numberWithFloat:100.0];
+    NSString *reminderTitle = self.titleField.text;
+    NSNumber *radius = [NSNumber numberWithFloat:self.radiusField.text.floatValue];
+    NSString *reminderBody = self.bodyField.text;
     
     Reminder *newReminder = [Reminder object];
     newReminder.title = reminderTitle;
     newReminder.radius = radius;
+    newReminder.body = reminderBody;
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
     __weak typeof(self) bruce = self;
@@ -64,7 +65,7 @@
                     [[LocationController sharedController].manager startMonitoringForRegion:region];
                     
                     // register notification for reminder
-                    [hulk createNotificationForRegion:region withName:reminderTitle];
+                    [[LocationController sharedController] createNotificationForRegion:region withName:reminderTitle andBody:reminderBody];
                 }
                 
                 // draw circle on map.
@@ -77,26 +78,15 @@
     }];
 }
 
--(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName {
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    content.title = @"Location Reminder";
-    content.subtitle = reminderName;
-    content.body = @"Your reminder info goes here!";
-    content.sound = [UNNotificationSound defaultSound];
-    
-    UNLocationNotificationTrigger *trigger = [UNLocationNotificationTrigger triggerWithRegion:region repeats:YES];
 
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:reminderName content:content trigger:trigger];
+// MARK: UITextViewDelegate Methods
+
+-(void)textViewDidChange:(UITextView *)textView {
+    NSString *bodyText = self.bodyField.text;
     
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"Error adding request to Notification Center with Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"No error adding notification.");
-        }
-    }];
+    if (bodyText.length >= 54) {
+        self.bodyField.text = [bodyText substringToIndex:([bodyText length] - 1)];
+    }
 }
 
 

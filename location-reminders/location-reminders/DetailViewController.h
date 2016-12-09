@@ -19,4 +19,10 @@ typedef void(^DetailViewControllerCompletion)(MKCircle *circle);
 
 @property(copy, nonatomic) DetailViewControllerCompletion completion;
 
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+
+@property (weak, nonatomic) IBOutlet UITextField *radiusField;
+
+@property (weak, nonatomic) IBOutlet UITextView *bodyField;
+
 @end

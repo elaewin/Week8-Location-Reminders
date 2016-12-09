@@ -22,32 +22,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MqC-p7-POr">
-                                <rect key="frame" x="40" y="84" width="295" height="449"/>
+                                <rect key="frame" x="20" y="84" width="335" height="390"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="390" id="X3y-lZ-ItX"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="aVL-f6-A9F" appends="YES" id="opn-0g-A0s"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxq-x1-lVI">
-                                <rect key="frame" x="39.5" y="579" width="295" height="30"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="SET ANOTHER LOCATION"/>
+                                <rect key="frame" x="20" y="540" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.36862745098039218" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="57K-BM-9jG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="22"/>
+                                <state key="normal" title="SET ANOTHER LOCATION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="setAnotherLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRX-TM-mnX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-uh-un8">
-                                <rect key="frame" x="39.5" y="617" width="295" height="30"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="SET LAST LOCATION"/>
+                                <rect key="frame" x="20" y="598" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.36862745098039218" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1Mu-m9-EXL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="22"/>
+                                <state key="normal" title="SET LAST LOCATION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="setFinalLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v5a-tU-fRt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-ir-Prs">
-                                <rect key="frame" x="40.5" y="541" width="295" height="30"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="SET LOCATION"/>
+                                <rect key="frame" x="20" y="482" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.36862745098039218" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="y4s-xu-ert"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="22"/>
+                                <state key="normal" title="SET LOCATION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="setLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GJY-yQ-gQB"/>
                                 </connections>
@@ -55,21 +76,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="MqC-p7-POr" secondAttribute="trailing" constant="40" id="6br-Us-9F4"/>
-                            <constraint firstItem="2Oi-uh-un8" firstAttribute="top" secondItem="Vxq-x1-lVI" secondAttribute="bottom" constant="8" id="9II-o4-Ckb"/>
-                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bwv-nT-o1M"/>
-                            <constraint firstItem="3h3-ir-Prs" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="F56-qZ-Sa6"/>
-                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="GjP-7O-yeq"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="JHz-bR-LDP"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="leading" secondItem="MqC-p7-POr" secondAttribute="leading" id="5Xv-XI-x0r"/>
+                            <constraint firstItem="3h3-ir-Prs" firstAttribute="top" secondItem="MqC-p7-POr" secondAttribute="bottom" constant="8" id="CRI-bC-xyD"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="top" secondItem="Vxq-x1-lVI" secondAttribute="bottom" constant="8" id="EyI-fG-AM8"/>
                             <constraint firstItem="3h3-ir-Prs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MIC-Nv-iuY"/>
-                            <constraint firstItem="2Oi-uh-un8" firstAttribute="top" secondItem="Vxq-x1-lVI" secondAttribute="bottom" constant="8" id="N9I-bJ-vMU"/>
-                            <constraint firstItem="MqC-p7-POr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="NgF-Nc-iHB"/>
-                            <constraint firstItem="3h3-ir-Prs" firstAttribute="top" secondItem="MqC-p7-POr" secondAttribute="bottom" constant="8" id="Utl-gh-62B"/>
-                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="cJV-rQ-Qv0"/>
-                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="top" secondItem="3h3-ir-Prs" secondAttribute="bottom" constant="8" id="eIh-bi-Qih"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2Oi-uh-un8" secondAttribute="bottom" constant="20" id="hPo-gL-ot4"/>
-                            <constraint firstItem="2Oi-uh-un8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qKQ-DA-r0f"/>
-                            <constraint firstItem="2Oi-uh-un8" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="zbk-Ld-V4W"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="PhZ-l8-Red"/>
+                            <constraint firstItem="MqC-p7-POr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="XhD-p4-7ef"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="gAs-Xr-q2J"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="ks8-Wv-kZ9"/>
+                            <constraint firstAttribute="trailing" secondItem="MqC-p7-POr" secondAttribute="trailing" constant="20" id="pu3-d8-vqe"/>
+                            <constraint firstItem="Vxq-x1-lVI" firstAttribute="top" secondItem="3h3-ir-Prs" secondAttribute="bottom" constant="8" id="q7j-R5-jFj"/>
+                            <constraint firstItem="2Oi-uh-un8" firstAttribute="leading" secondItem="Vxq-x1-lVI" secondAttribute="leading" id="vQS-Au-9zp"/>
+                            <constraint firstItem="3h3-ir-Prs" firstAttribute="width" secondItem="MqC-p7-POr" secondAttribute="width" id="zn4-xT-o9R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c2f-7A-WV7"/>
@@ -120,13 +138,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What is this reminder for?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-nc-4pi">
+                                <rect key="frame" x="16" y="196.5" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create A Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJL-4U-31v">
+                                <rect key="frame" x="53.5" y="104" width="268.5" height="42"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius Around Pin (meters)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfU-h6-ndo">
+                                <rect key="frame" x="58.5" y="250.5" width="257.5" height="26.5"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-Pm-qR0">
+                                <rect key="frame" x="167.5" y="162" width="40" height="26.5"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oaf-g9-Zpt">
+                                <rect key="frame" x="120.5" y="339" width="134.5" height="26.5"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76Y-Z0-4hg">
+                                <rect key="frame" x="137.5" y="285" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="a8b-mZ-zfw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lga-xG-oTC">
-                                <rect key="frame" x="16" y="308" width="343" height="50"/>
+                                <rect key="frame" x="16" y="505" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.14509803921568629" green="0.18431372549019609" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="KfZ-iJ-Vs7"/>
+                                    <constraint firstAttribute="height" constant="50" id="BaR-AO-Q2H"/>
+                                    <constraint firstAttribute="width" constant="343" id="Lot-Ts-Fq0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
                                 <state key="normal" title="SAVE REMINDER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -134,15 +192,44 @@
                                     <action selector="saveReminderPressed:" destination="gat-3z-11H" eventType="touchUpInside" id="39J-gP-Whg"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Remember to..." translatesAutoresizingMaskIntoConstraints="NO" id="Vny-8p-TPI">
+                                <rect key="frame" x="16" y="373" width="343" height="76"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="vSY-RC-1Sh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lga-xG-oTC" firstAttribute="leading" secondItem="DSE-cF-VVC" secondAttribute="leading" constant="16" id="GUk-Qd-ec7"/>
-                            <constraint firstAttribute="trailing" secondItem="lga-xG-oTC" secondAttribute="trailing" constant="16" id="OZ0-QD-6ZD"/>
-                            <constraint firstItem="lga-xG-oTC" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="SKL-h9-Xu6"/>
-                            <constraint firstItem="lga-xG-oTC" firstAttribute="centerY" secondItem="DSE-cF-VVC" secondAttribute="centerY" id="sQp-Zh-R7u"/>
+                            <constraint firstItem="76Y-Z0-4hg" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="2gq-se-1Cb"/>
+                            <constraint firstItem="Vny-8p-TPI" firstAttribute="leading" secondItem="DSE-cF-VVC" secondAttribute="leading" constant="16" id="3YG-T6-rWm"/>
+                            <constraint firstItem="Oaf-g9-Zpt" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="KzX-3e-4fs"/>
+                            <constraint firstItem="FfU-h6-ndo" firstAttribute="top" secondItem="cdP-nc-4pi" secondAttribute="bottom" constant="24" id="LZV-xv-a0H"/>
+                            <constraint firstItem="Vny-8p-TPI" firstAttribute="top" secondItem="Oaf-g9-Zpt" secondAttribute="bottom" constant="8" id="NEd-oQ-LWP"/>
+                            <constraint firstItem="FfU-h6-ndo" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="Pk7-lv-ioA"/>
+                            <constraint firstItem="kJL-4U-31v" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="SAX-bf-ETk"/>
+                            <constraint firstItem="lga-xG-oTC" firstAttribute="top" secondItem="Vny-8p-TPI" secondAttribute="bottom" constant="56" id="TCN-Lm-pXt"/>
+                            <constraint firstItem="cdP-nc-4pi" firstAttribute="leading" secondItem="DSE-cF-VVC" secondAttribute="leading" constant="16" id="V3X-nA-q0m"/>
+                            <constraint firstAttribute="trailing" secondItem="Vny-8p-TPI" secondAttribute="trailing" constant="16" id="ZVh-1Z-XWy"/>
+                            <constraint firstAttribute="trailing" secondItem="cdP-nc-4pi" secondAttribute="trailing" constant="16" id="cGa-gp-jHe"/>
+                            <constraint firstItem="Oaf-g9-Zpt" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="cvs-UP-YJW"/>
+                            <constraint firstItem="Oaf-g9-Zpt" firstAttribute="top" secondItem="76Y-Z0-4hg" secondAttribute="bottom" constant="24" id="e1T-Pc-lST"/>
+                            <constraint firstItem="76Y-Z0-4hg" firstAttribute="top" secondItem="FfU-h6-ndo" secondAttribute="bottom" constant="8" id="gDS-Iy-Q5M"/>
+                            <constraint firstItem="lga-xG-oTC" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="ghE-4f-bsm"/>
+                            <constraint firstItem="kJL-4U-31v" firstAttribute="top" secondItem="CDP-s5-rhU" secondAttribute="bottom" constant="40" id="h8b-bz-gQh"/>
+                            <constraint firstItem="cdP-nc-4pi" firstAttribute="top" secondItem="Kvb-Pm-qR0" secondAttribute="bottom" constant="8" id="rCQ-rs-GoV"/>
+                            <constraint firstItem="Kvb-Pm-qR0" firstAttribute="top" secondItem="kJL-4U-31v" secondAttribute="bottom" constant="16" id="sJu-On-ijK"/>
+                            <constraint firstItem="Kvb-Pm-qR0" firstAttribute="centerX" secondItem="DSE-cF-VVC" secondAttribute="centerX" id="yhX-Bf-cXO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bodyField" destination="Vny-8p-TPI" id="6yh-3T-tTp"/>
+                        <outlet property="radiusField" destination="76Y-Z0-4hg" id="z7S-dS-zof"/>
+                        <outlet property="titleField" destination="cdP-nc-4pi" id="mrT-f8-oob"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGs-2v-a2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

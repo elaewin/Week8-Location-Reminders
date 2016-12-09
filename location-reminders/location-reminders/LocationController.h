@@ -32,4 +32,6 @@
 
 -(MKPointAnnotation *)createAnnotationWithLatitude:(float)latitude andLongitude:(float)longitude andTitle:(NSString *)title;
 
+-(void)createNotificationForRegion:(CLRegion *)region withName:(NSString *)reminderName andBody:(NSString *)body;
+
 @end

@@ -13,5 +13,6 @@
 @property(strong, nonatomic) NSString *title;
 @property(strong, nonatomic) NSNumber *radius; // radius around a geopoint
 @property(strong, nonatomic) PFGeoPoint *location;
+@property(strong, nonatomic) NSString *body;
 
 @end

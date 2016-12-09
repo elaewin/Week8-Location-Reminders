@@ -33,17 +33,43 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+//    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (!error) {
+//            // how to return to main queue in obj-c:
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                NSLog(@"%@", objects);
+//            }];
+//        }
+//    }];
+
+    // Get reminders from Parse
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    __weak typeof(self) bruce = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+        __strong typeof(bruce) hulk = bruce;
         if (!error) {
-            // how to return to main queue in obj-c:
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                NSLog(@"%@", objects);
-            }];
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu reminders.", (unsigned long)objects.count);
+            
+            // Do something with the found objects
+            for (Reminder *reminder in objects) {
+                NSLog(@"%@", reminder.objectId);
+                
+                
+                
+                [hulk.mapView addOverlay:circle];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
 
+    
     [self requestPermissions];
     
     [[LocationController sharedController] setDelegate:self];
@@ -190,6 +216,8 @@
     
     [self.mapView setRegion:region];
 }
+
+
 
 // MARK: MKMapViewDelegate Methods
 

@@ -14,6 +14,7 @@
 @dynamic title;
 @dynamic radius;
 @dynamic location;
+@dynamic body;
 
 
 +(NSString *)parseClassName {
