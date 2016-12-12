@@ -52,16 +52,18 @@
 
         __strong typeof(bruce) hulk = bruce;
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu reminders.", (unsigned long)objects.count);
-            
-            // Do something with the found objects
-            for (Reminder *reminder in objects) {
-                NSLog(@"%@", reminder.objectId);
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                // The find succeeded.
+                NSLog(@"Successfully retrieved %lu reminders.", (unsigned long)objects.count);
                 
-                MKCircle *circle = [[LocationController sharedController] beginMonitoringCircularRegion:reminder];
-                [hulk.mapView addOverlay:circle];
-            }
+                // Do something with the found objects
+                for (Reminder *reminder in objects) {
+                    NSLog(@"%@", reminder.objectId);
+                    
+                    MKCircle *circle = [[LocationController sharedController] beginMonitoringCircularRegion:reminder];
+                    [hulk.mapView addOverlay:circle];
+                }
+            }];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);

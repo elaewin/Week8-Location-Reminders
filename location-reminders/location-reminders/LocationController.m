@@ -113,7 +113,7 @@
 -(UIColor *)getRandomColor {
     NSArray *colors = @[[UIColor blueColor], [UIColor brownColor], [UIColor cyanColor], [UIColor greenColor], [UIColor lightGrayColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor redColor], [UIColor yellowColor]];
     
-    int index = arc4random_uniform(colors.count);
+    int index = arc4random_uniform((uint32_t)colors.count);
     
     return colors[index];
 }
@@ -141,6 +141,7 @@
 }
 
 -(MKCircle *)beginMonitoringCircularRegion:(Reminder *)reminder {
+    // This creates the CLLocationCoordinate2D struct
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
     
     if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
