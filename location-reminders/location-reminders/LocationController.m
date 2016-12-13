@@ -8,6 +8,7 @@
 
 #import "LocationController.h"
 #import "Reminder.h"
+#import "ErrorDomainInformation.h"
 @import NotificationCenter;
 @import UserNotifications;
 
@@ -133,7 +134,12 @@
     
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Error adding request to Notification Center with Error: %@", error.localizedDescription);
+            
+            NSDictionary *errorDictionary = @{@"Description": @"User Notification Creation Error", NSLocalizedDescriptionKey: @"Failed to add location alert to UNNotificationCenter."};
+            
+            NSError *addNotificationError = [NSError errorWithDomain:locationRemindersErrorDomain code:UserNotificationCreationFailure userInfo:errorDictionary];
+            
+            NSLog(@"Error: %@ - %@", addNotificationError, addNotificationError.localizedDescription);
         } else {
             NSLog(@"No error adding notification.");
         }

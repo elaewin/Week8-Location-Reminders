@@ -10,13 +10,14 @@
 @import Parse;
 @import ParseUI;
 
+#import "ErrorDomainInformation.h"
+
 #import "ViewController.h"
 #import "DetailViewController.h"
 #import "LocationController.h"
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 #import "Reminder.h"
-
 
 @interface ViewController () <LocationControllerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -59,7 +60,7 @@
                 
                 // Do something with the found objects
                 for (Reminder *reminder in objects) {
-                    NSLog(@"%@", reminder.objectId);
+//                    NSLog(@"%@", reminder.objectId);
                     
                     MKCircle *circle = [[LocationController sharedController]beginMonitoringCircularRegion:reminder];
                     
@@ -80,7 +81,12 @@
 //            }];
         } else {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
+            NSDictionary *errorDictionary = @{@"Description": @"Parse Query Error", NSLocalizedDescriptionKey: @"Error querying data from Parse Server."};
+            
+            NSError *parseQueryError = [NSError errorWithDomain:locationRemindersErrorDomain code:ParseQueryFailure userInfo:errorDictionary];
+            
+            NSLog(@"Error: %@ %@", parseQueryError, parseQueryError.localizedDescription);
         }
     }];
 
@@ -158,7 +164,16 @@
 
 -(void)createAnnotations {
     
-    [self.mapView addAnnotations:[[LocationController sharedController] locationsArray]];
+    if ([[LocationController sharedController] locationsArray]) {
+        [self.mapView addAnnotations:[[LocationController sharedController] locationsArray]];
+    } else {
+        NSDictionary *errorDictionary = @{@"Description": @"Error Creating Annotations", NSLocalizedDescriptionKey: @"Error creating annotiations because locationsArray could not be found."};
+        
+        NSError *annotatingError = [NSError errorWithDomain:locationRemindersErrorDomain code:AnnotatingFailureWithoutLocationInformation userInfo:errorDictionary];
+        
+        NSLog(@"Error: %@ - %@", annotatingError, annotatingError.localizedDescription);
+    }
+    
     
 //    for (MKPointAnnotation *location in [[LocationController sharedController] locationsArray]) {
 //        

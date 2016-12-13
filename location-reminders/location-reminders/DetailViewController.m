@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "Reminder.h"
 #import "LocationController.h"
+#import "ErrorDomainInformation.h"
 
 @import UserNotifications;
 
@@ -21,10 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"Annotation With Title: %@ - Lat: %.3f, Long: %.3f",
-          self.annotationTitle,
-          self.coordinate.latitude,
-          self.coordinate.longitude);
+    if (!self.annotationTitle && !self.coordinate.latitude && !self.coordinate.longitude) {
+        
+        NSDictionary *errorDictionary = @{@"Description": @"Missing Location Information", NSLocalizedDescriptionKey: @"Location information passed to Detail View Controller is missing necessary data."};
+        
+        NSError *missingLocationInformationError = [NSError errorWithDomain:locationRemindersErrorDomain code:UsableLocationInformationMissing userInfo:errorDictionary];
+        
+        NSLog(@"Error: %@ - %@", missingLocationInformationError, missingLocationInformationError.localizedDescription);
+        
+    } else {
+        NSLog(@"Annotation With Title: %@ - Lat: %.3f, Long: %.3f",
+              self.annotationTitle,
+              self.coordinate.latitude,
+              self.coordinate.longitude);
+    }
 }
 
 - (IBAction)saveReminderPressed:(UIButton *)sender {
@@ -47,7 +58,12 @@
         __strong typeof(bruce) hulk = bruce;
         
         if (error) {
-            NSLog(@"Error saving reminder: %@", error.localizedDescription);
+            
+            NSDictionary *errorDictionary = @{@"Description": @"Parse Save Error", NSLocalizedDescriptionKey: @"Error saving data to Parse Server"};
+            
+            NSError *parseSaveError = [NSError errorWithDomain:locationRemindersErrorDomain code:ParseSaveFailure userInfo:errorDictionary];
+            
+            NSLog(@"Error: %@ - %@", parseSaveError, parseSaveError.localizedDescription);
         } else {
             NSLog(@"Success saving new reminder to Parse: %i", succeeded);
             

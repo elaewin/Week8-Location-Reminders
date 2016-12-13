@@ -67,6 +67,7 @@
 		55524A901DF8C13E0088B308 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		55524A921DF8DE1A0088B308 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		55524A931DF8DE1A0088B308 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		55CCE58A1E00B24D00A3B61C /* ErrorDomainInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorDomainInformation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +115,7 @@
 		55293F061DF5E8A000A8FCD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55CCE58A1E00B24D00A3B61C /* ErrorDomainInformation.h */,
 				55293F091DF5E8A000A8FCD6 /* AppDelegate.h */,
 				55293F0A1DF5E8A000A8FCD6 /* AppDelegate.m */,
 				55293F121DF5E8A000A8FCD6 /* Assets.xcassets */,

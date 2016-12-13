@@ -8,9 +8,12 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "ErrorDomainInformation.h"
 
 @import Parse;
 @import UserNotifications;
+
+
 
 @interface AppDelegate ()
 
