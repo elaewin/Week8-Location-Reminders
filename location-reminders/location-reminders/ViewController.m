@@ -49,10 +49,11 @@
     
     __weak typeof(self) bruce = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-
+        
         __strong typeof(bruce) hulk = bruce;
         if (!error) {
-            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
                 // The find succeeded.
                 NSLog(@"Successfully retrieved %lu reminders.", (unsigned long)objects.count);
                 
@@ -60,10 +61,23 @@
                 for (Reminder *reminder in objects) {
                     NSLog(@"%@", reminder.objectId);
                     
-                    MKCircle *circle = [[LocationController sharedController] beginMonitoringCircularRegion:reminder];
+                    MKCircle *circle = [[LocationController sharedController]beginMonitoringCircularRegion:reminder];
+                    
                     [hulk.mapView addOverlay:circle];
                 }
-            }];
+            });
+            //            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            //                // The find succeeded.
+            //                NSLog(@"Successfully retrieved %lu reminders.", (unsigned long)objects.count);
+            //
+            //                // Do something with the found objects
+            //                for (Reminder *reminder in objects) {
+            //                    NSLog(@"%@", reminder.objectId);
+//                    
+//                    MKCircle *circle = [[LocationController sharedController] beginMonitoringCircularRegion:reminder];
+//                    [hulk.mapView addOverlay:circle];
+//                }
+//            }];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
