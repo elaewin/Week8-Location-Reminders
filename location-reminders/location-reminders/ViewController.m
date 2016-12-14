@@ -90,7 +90,6 @@
         }
     }];
 
-    
     [self requestPermissions];
     
     [[LocationController sharedController] setDelegate:self];
